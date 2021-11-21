@@ -1,7 +1,10 @@
+from Follower import Follower
+from Leader import Leader
+
 class Game:
-    def __init__(self, gain_and_costs, attack_probabilities, leader, follower):
-        self.leader = leader
-        self.follower = follower
+    def __init__(self, gain_and_costs, attack_probabilities):
+        self.leader = Leader(gain_and_costs, attack_probabilities, [1, 0, 0, 1])
+        self.follower = Follower(gain_and_costs, attack_probabilities, [1, 0, 0, 1])
         self.gain_and_costs = gain_and_costs
         self.attack_probabilities = attack_probabilities
         self.round_counter = 0
