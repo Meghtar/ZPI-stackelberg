@@ -1,5 +1,7 @@
+from Configuration import attack_and_remedy_prob
 from Follower import Follower
 from Leader import Leader
+import random
 
 class Game:
     def __init__(self, gain_and_costs, attack_probabilities):
@@ -43,3 +45,10 @@ class Game:
         print('Realising round ' + str(self.round_counter))
         self.round_counter += 1
         pass
+
+    def best_attacker_strategy(self, strategy_array):
+        best_strategy = []
+        for i in range(0, len(strategy_array)):
+            best_strategy = attack_and_remedy_prob[i].index(max(attack_and_remedy_prob[i]))
+        #jeśli oba prawdopodobieństwa najlepszej strategi są takie same to wybierz losowo jedno z nich.
+        return best_strategy[random.randint(0, len(best_strategy)-1)]

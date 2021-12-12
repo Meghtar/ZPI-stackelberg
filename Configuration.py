@@ -16,3 +16,19 @@ attack_probabilities = {
     "countermeasure_2" : [0, 0.1, 1, 0.9],
     "countermeasure_3" : [0, 0.1, 1, 0.9]
 }
+
+# śr. zaradczy/atak | sqli | phising | MiTM | DDoS | reverse
+# backup            |`0.1  |1        | 1    | 1    | 0.2
+# MFA               |1     |0        | 0.1  | 1    | 0.5
+# Centralizacja API |0.5   |1        | 0.4  | 1    | 0.4
+# anty-DDoS         |0.2   |0.5      | 0.5  | 0.1  | 1
+# Hardening         |0.1   |0.5      | 0.5  | 1    | 0.2
+
+attack_and_remedy_prob = [
+    [0.1, 1  , 1  , 1  , 0.2],
+    [1  , 0  , 0.1, 1  , 0.5],
+    [0.5, 1  , 0.4, 1  , 0.4],
+    [0.2, 0.5, 0.5, 0.1, 1  ],
+    [0.1, 0.5, 0.2, 1  , 0.2]
+]
+
