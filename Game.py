@@ -8,24 +8,31 @@ class Game:
         self.leader = Leader(gain_and_costs_leader, attack_probabilities, [1, 0, 0, 1, 0])
         self.follower = Follower(gains_and_costs_follower, attack_probabilities, [1, 0, 0, 1, 0])
         self.attack_probabilities = attack_probabilities
+        self.gain_and_costs_leader = gain_and_costs_leader
+        self.gains_and_costs_follower = gains_and_costs_follower
         self.round_counter = 0
         self.attack_count = 5
         self.defence_count = 5
 
     def probability(self, leader, follower):
-        return 1
+        # print('leader: {}, follower: {}, prob: {}'.format(leader, follower, self.attack_probabilities[leader][follower]))
+        return self.attack_probabilities[leader][follower]
 
     def leader_gain(self, asset_number):
-        return 1
+        # print('asset: {}, leader_gain: {}'.format(asset_number, self.gain_and_costs_leader[asset_number][0]))
+        return self.gain_and_costs_leader[asset_number][0]
 
-    def leader_cost(self, asset_number, countermeasure_cost):
-        return 1
+    def leader_cost(self, asset_number, countermeasure):
+        # print('asset: {}, countermeasure: {}, cost: {}'.format(asset_number, countermeasure, self.gain_and_costs_leader[asset_number][countermeasure + 1]))
+        return self.gain_and_costs_leader[asset_number][countermeasure + 1]
 
     def follower_gain(self, asset_number):
-        return 1
+        # print('asset: {}, leader_gain: {}'.format(asset_number, self.gains_and_costs_follower[asset_number][0]))
+        return self.gains_and_costs_follower[asset_number][0]
 
-    def follower_cost(self, asset_number, countermeasure_cost):
-        return 1
+    def follower_cost(self, asset_number, countermeasure):
+        # print('asset: {}, countermeasure: {}, cost: {}'.format(asset_number, countermeasure, self.gains_and_costs_follower[asset_number][countermeasure + 1]))
+        return self.gains_and_costs_follower[asset_number][countermeasure + 1]
 
     def calculate_leader_payoff(self):
         total_payoff = 0
