@@ -46,6 +46,7 @@ class Game:
         self.round_counter += 1
         pass
 
+
     def best_attacker_strategy(self, strategy_array):
         best_strategy = []
         for i in range(0, len(strategy_array)):
