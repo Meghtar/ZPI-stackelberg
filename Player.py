@@ -4,10 +4,10 @@ class Player:
         self.attack_probabilities = attack_probabilities
         self.gain_and_costs = gain_and_costs
         self.previous_rounds = []
-    
+
     def get_whole_strategy(self):
         return self.strategy
-    
+
     def get_strategy(self, index):
         return self.strategy[index]
 

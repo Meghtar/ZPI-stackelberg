@@ -66,7 +66,7 @@ gains_and_costs = [
     [20, 40, 40, 10, 60, 10, 50]
 ]
 
-# tab 5a - to be leader gains and costs?
+# tab 5a - to be leader gains and costs?, currently it's just costs
 # backups | MFA | API centralization? | anty-DDOS | hardening/pentests
 # asset nr vvv
 gain_and_costs2 = [

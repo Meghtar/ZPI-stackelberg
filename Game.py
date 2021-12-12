@@ -12,19 +12,19 @@ class Game:
         self.round_counter = 0
         self.attack_count = 5
         self.defence_count = 5
-    
+
     def probability(self, leader, follower):
         return 1
-    
+
     def leader_gain(self, asset_number):
         return 1
-    
+
     def leader_cost(self, asset_number, countermeasure_cost):
         return 1
-    
+
     def follower_gain(self, asset_number):
         return 1
-    
+
     def follower_cost(self, asset_number, countermeasure_cost):
         return 1
 
@@ -39,7 +39,7 @@ class Game:
                     (1 - self.probability(leader=i, follower=j) * \
                     (self.leader_gain(i) - self.leader_cost(i,j)))
         return total_payoff
-    
+
     def calculate_follower_payoff(self):
         total_payoff = 0
         for i in range(self.attack_count):
@@ -50,7 +50,7 @@ class Game:
                     (1 - self.probability(leader=i, follower=j) * \
                     ((-1) * self.follower_cost(i,j)))
         return total_payoff
-    
+
     def realise_round(self):
         print('Realising round ' + str(self.round_counter))
         self.round_counter += 1
@@ -60,12 +60,12 @@ class Game:
 
         print('Follower strategy:')
         print(self.follower.get_whole_strategy())
-        
+
         print('--------------------')
 
         leader_payoff = self.calculate_leader_payoff()
         follower_payoff = self.calculate_follower_payoff()
-        
+
         print('Payoffs:')
         print('Leader_payoff={lp}\tFollower_payoff={fp}'.format(lp=leader_payoff, fp=follower_payoff))
 
