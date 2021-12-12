@@ -4,10 +4,9 @@ from Leader import Leader
 import random
 
 class Game:
-    def __init__(self, gain_and_costs, attack_probabilities):
-        self.leader = Leader(gain_and_costs, attack_probabilities, [1, 0, 0, 1, 0])
-        self.follower = Follower(gain_and_costs, attack_probabilities, [1, 0, 0, 1, 0])
-        self.gain_and_costs = gain_and_costs
+    def __init__(self, gain_and_costs_leader, gains_and_costs_follower, attack_probabilities):
+        self.leader = Leader(gain_and_costs_leader, attack_probabilities, [1, 0, 0, 1, 0])
+        self.follower = Follower(gains_and_costs_follower, attack_probabilities, [1, 0, 0, 1, 0])
         self.attack_probabilities = attack_probabilities
         self.round_counter = 0
         self.attack_count = 5

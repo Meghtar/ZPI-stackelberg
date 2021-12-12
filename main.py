@@ -3,7 +3,7 @@ from Configuration import *
 
 if __name__ == "__main__": 
 
-    game = Game(gains_and_costs, attack_probabilities)
+    game = Game(gain_and_costs_leader, gains_and_costs_follower, attack_probabilities)
 
     amount_of_rounds = 2
 
