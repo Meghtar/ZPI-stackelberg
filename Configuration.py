@@ -21,8 +21,8 @@ attack_probabilities = {
 # śr. zaradczy/atak | sqli | phising | MiTM | DDoS | reverse
 # backup            |`0.1  |1        | 1    | 1    | 0.2
 # MFA               |1     |0        | 0.1  | 1    | 0.5
-# Centralizacja API |0.5   |1        | 0.4  | 1    | 0.4
 # anty-DDoS         |0.2   |0.5      | 0.5  | 0.1  | 1
+# Centralizacja API |0.5   |1        | 0.4  | 1    | 0.4
 # Hardening         |0.1   |0.5      | 0.5  | 1    | 0.2
 
 attack_and_remedy_prob = [

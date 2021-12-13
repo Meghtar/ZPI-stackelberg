@@ -38,7 +38,6 @@ class Game:
         total_payoff = 0
         for i in range(self.attack_count):
             for j in range(self.defence_count):
-                # TODO: check if i and j are properly distributed
                 total_payoff += self.leader.get_strategy(i) * self.follower.get_strategy(j) * \
                     (self.probability(leader=i, follower=j) * \
                     ((-1) * self.leader_gain(i) - self.leader_cost(i,j))) + \
@@ -52,9 +51,9 @@ class Game:
             for j in range(self.defence_count):
                 total_payoff += self.leader.get_strategy(i) * self.follower.get_strategy(j) * \
                     (self.probability(leader=i, follower=j) * \
-                    ((-1) * self.follower_gain(j) - self.follower_cost(i,j))) + \
-                    (1 - self.probability(leader=i, follower=j) * \
-                    ((-1) * self.follower_cost(i,j)))
+                    (self.follower_gain(j) - self.follower_cost(i,j))) + \
+                    (1 - self.probability(leader=i, follower=j)) * \
+                    ((-1) * self.follower_cost(i,j))
         return total_payoff
 
     def realise_round(self):
