@@ -42,8 +42,8 @@ class Game:
                 total_payoff += self.leader.get_strategy(i) * self.follower.get_strategy(j) * \
                     (self.probability(leader=i, follower=j) * \
                     ((-1) * self.leader_gain(i) - self.leader_cost(i,j))) + \
-                    (1 - self.probability(leader=i, follower=j) * \
-                    (self.leader_gain(i) - self.leader_cost(i,j)))
+                    (1 - self.probability(leader=i, follower=j)) * \
+                    (self.leader_gain(i) - self.leader_cost(i,j))
         return total_payoff
 
     def calculate_follower_payoff(self):
