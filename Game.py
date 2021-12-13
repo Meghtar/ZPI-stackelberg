@@ -5,7 +5,7 @@ import random
 
 class Game:
     def __init__(self, gain_and_costs_leader, gains_and_costs_follower, attack_probabilities):
-        self.leader = Leader(gain_and_costs_leader, attack_probabilities, [1, 0, 0, 1, 0])
+        self.leader = Leader(gain_and_costs_leader, attack_probabilities, [0, 0, 0, 0, 1])
         self.follower = Follower(gains_and_costs_follower, attack_probabilities, [1, 0, 0, 1, 0])
         self.attack_probabilities = attack_probabilities
         self.gain_and_costs_leader = gain_and_costs_leader
@@ -61,6 +61,9 @@ class Game:
         print('Realising round ' + str(self.round_counter))
         self.round_counter += 1
 
+        self.leader.create_new_strategy()
+        self.follower.create_new_strategy() # TODO: leader strat already known
+
         print('Leader strategy:')
         print(self.leader.get_whole_strategy())
 
@@ -88,8 +91,6 @@ class Game:
             leader_payoff
         )
 
-        self.leader.create_new_strategy()
-        self.follower.create_new_strategy()
 
     def best_attacker_strategy(self, strategy_array):
         best_strategy = []
