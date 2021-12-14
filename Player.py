@@ -2,7 +2,7 @@ class Player:
     def __init__(self, gain_and_costs, attack_probabilities, initial_strategy):
         self.strategy = initial_strategy
         self.attack_probabilities = attack_probabilities
-        self.gain_and_costs = gain_and_costs # TODO: I'm not sure if this is needed if payoff is calculated inside Game class
+        self.gain_and_costs = gain_and_costs
         self.previous_rounds = []
 
     def get_whole_strategy(self):
