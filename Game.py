@@ -13,6 +13,20 @@ class Game:
         self.round_counter = 0
         self.attack_count = 5
         self.defence_count = 5
+        self.best_leader_round = {
+            'round': -1,
+            'payoff': -99999,
+            'opp_payoff': 99999,
+            'strategy': [0,0,0,0,0],
+            'opp_strategy': [0,0,0,0,0]
+        }
+        self.best_follower_round = {
+            'round': -1,
+            'payoff': -99999,
+            'opp_payoff': 99999,
+            'strategy': [0,0,0,0,0],
+            'opp_strategy': [0,0,0,0,0]
+        }
 
     def probability(self, leader, follower):
         # print('leader: {}, follower: {}, prob: {}'.format(leader, follower, self.attack_probabilities[leader][follower]))
@@ -57,8 +71,8 @@ class Game:
         return total_payoff
 
     def realise_round(self):
-        print('Realising round ' + str(self.round_counter))
         self.round_counter += 1
+        print('Realising round ' + str(self.round_counter))
 
         self.leader.create_new_strategy()
         self.follower.create_new_strategy() # TODO: leader strat already known
@@ -73,6 +87,22 @@ class Game:
 
         leader_payoff = self.calculate_leader_payoff()
         follower_payoff = self.calculate_follower_payoff()
+
+        # Adding games to summary
+        if leader_payoff > self.best_leader_round['payoff']:
+            self.best_leader_round['payoff'] = leader_payoff
+            self.best_leader_round['opp_payoff'] = follower_payoff
+            self.best_leader_round['round'] = self.round_counter
+            self.best_leader_round['strategy'] = self.leader.get_whole_strategy()
+            self.best_leader_round['opp_strategy'] = self.follower.get_whole_strategy()
+
+        if follower_payoff > self.best_follower_round['payoff']:
+            self.best_follower_round['payoff'] = follower_payoff
+            self.best_follower_round['opp_payoff'] = leader_payoff
+            self.best_follower_round['round'] = self.round_counter
+            self.best_follower_round['strategy'] = self.follower.get_whole_strategy()
+            self.best_follower_round['opp_strategy'] = self.leader.get_whole_strategy()
+
 
         print('Payoffs:')
         print('Leader_payoff={lp}\tFollower_payoff={fp}'.format(lp=leader_payoff, fp=follower_payoff))
@@ -90,6 +120,34 @@ class Game:
             leader_payoff
         )
 
+    def summarise_games(self):
+        print('==================================')
+        print('Best round for Leader:')
+        print('Round number: {}'.format(
+            self.best_leader_round['round']
+        ))
+        print('Leader strategy: {} \t Follower strategy: {}'.format(
+            self.best_leader_round['strategy'],
+            self.best_leader_round['opp_strategy']
+        ))
+        print('Leader payoff: {} \t Follower payoff: {}'.format(
+            self.best_leader_round['payoff'],
+            self.best_leader_round['opp_payoff']
+        ))
+        print('==================================')
+        print('Best round for Follower:')
+        print('Round number: {}'.format(
+            self.best_follower_round['round']
+        ))
+        print('Follower strategy: {} \t Leader strategy: {}'.format(
+            self.best_follower_round['strategy'],
+            self.best_follower_round['opp_strategy']
+        ))
+        print('Follower payoff: {} \t Leader payoff: {}'.format(
+            self.best_follower_round['payoff'],
+            self.best_follower_round['opp_payoff']
+        ))
+        print('==================================')
 
     def best_attacker_strategy(self, strategy_array):
         best_strategy = []
