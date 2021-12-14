@@ -58,12 +58,20 @@ attack_probabilities = [
 # tab 5 - to be follower gains and costs?
 # attacker gain | a1cost | a2cost | a3cost | a4cost | a5cost
 # asset nr vvv
-gains_and_costs_follower = [
+backup_gains_and_costs_follower = [
     [40 , 20, 20, 50, 10, 70],
     [40 , 20, 20, 40, 10, 20],
     [80 , 30, 20, 70, 10, 30],
     [100, 60, 20, 80, 15, 50],
     [20 , 40, 10, 60, 10, 50]
+]
+# adjusted, gain must always be bigger than costs (???)
+gains_and_costs_follower = [
+    [40 , 4, 4, 20, 2, 39],
+    [40 , 4, 4, 39, 2, 10],
+    [80 , 35, 20, 50, 1, 17],
+    [100, 45, 20, 70, 15, 25],
+    [20 , 40, 10, 10, 7, 18]
 ]
 
 # tab 5a - to be leader gains and costs?, currently it's just costs
