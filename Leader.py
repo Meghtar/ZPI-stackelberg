@@ -46,7 +46,7 @@ class Leader(Player):
         # print('best strat after switch: {}'.format(best_strat))
         # print('+++++')
         self.strategy = best_strat
-    
+
     def strategy2(self):
         pass
 
