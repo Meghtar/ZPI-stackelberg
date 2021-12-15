@@ -30,7 +30,7 @@ class Follower(Player):
 
     def create_new_strategy(self, leader_strategy):
         self.strategy = [1, 1, 1, 0, 1]
-        best_strategy_scores = -1000
+        best_strategy_score = -1000
 
         for game in self.all_game_possibilities:
             for i in range(len(self.strategy)):
@@ -40,7 +40,7 @@ class Follower(Player):
                         (self.follower_gain(j) - self.follower_cost(i,j))) + \
                         (1 - self.get_prob(leader_strategy[i], game[j])) * \
                         ((-1) * self.follower_cost(i,j))
-                    if strategy_score > best_strategy_scores:
-                        best_strategy_scores = strategy_score
+                    if strategy_score > best_strategy_score:
+                        best_strategy_score = strategy_score
                         self.strategy = game
-        #print("Najlepsza strategia ", self.strategy, " punkty ", best_strategy_scores)
+        #print("Najlepsza strategia ", self.strategy, " punkty ", best_strategy_score)
