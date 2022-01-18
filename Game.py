@@ -72,11 +72,11 @@ class Game:
 
     def realise_round(self):
         self.round_counter += 1
+        print('++++++++++++++++++++')
         print('Realising round ' + str(self.round_counter))
 
         self.leader.create_new_strategy()
         self.follower.create_new_strategy(self.leader.get_whole_strategy()) # TODO: leader strat already known
-        #self.follower.create_new_strategy()
 
         print('Leader strategy:')
         print(self.leader.get_whole_strategy())
