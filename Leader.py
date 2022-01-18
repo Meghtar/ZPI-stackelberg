@@ -1,14 +1,16 @@
-from Player import Player
 import random
 
+from Player import Player
+
+
 class Leader(Player):
-    def __init__(self,  gain_and_costs, attack_probabilities, initial_strategy):
+    def __init__(self, gain_and_costs, attack_probabilities, initial_strategy):
         super().__init__(gain_and_costs, attack_probabilities, initial_strategy)
 
     def create_new_strategy(self):
         # programmer shall change strategy here
         self.strategy2()
-    
+
     def strategy1(self):
         ### strategy 1:
         # simply randomly switching bits of best strategy, and willing to find best strategy this way 
@@ -25,8 +27,8 @@ class Leader(Player):
             if round['payoff'] > best_payoff:
                 best_payoff = round['payoff']
                 best_strat = round['strategy']
-        
-        place_to_switch = random.randint(0,4)
+
+        place_to_switch = random.randint(0, 4)
 
         best_strat[place_to_switch] = 1 - best_strat[place_to_switch]
 
@@ -112,7 +114,7 @@ class Leader(Player):
         return cost
 
     def generate_all_strats_for_strat3(self):
-        last_candidate = [0,0,0,0,0]
+        last_candidate = [0, 0, 0, 0, 0]
         possible_strats = []
         possible_strats.append(last_candidate)
         round = 1

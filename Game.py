@@ -1,7 +1,6 @@
-from Configuration import attack_and_remedy_prob
 from Follower import Follower
 from Leader import Leader
-import random
+
 
 class Game:
     def __init__(self, gain_and_costs_leader, gains_and_costs_follower, attack_probabilities):
@@ -17,15 +16,15 @@ class Game:
             'round': -1,
             'payoff': -99999,
             'opp_payoff': 99999,
-            'strategy': [0,0,0,0,0],
-            'opp_strategy': [0,0,0,0,0]
+            'strategy': [0, 0, 0, 0, 0],
+            'opp_strategy': [0, 0, 0, 0, 0]
         }
         self.best_follower_round = {
             'round': -1,
             'payoff': -99999,
             'opp_payoff': 99999,
-            'strategy': [0,0,0,0,0],
-            'opp_strategy': [0,0,0,0,0]
+            'strategy': [0, 0, 0, 0, 0],
+            'opp_strategy': [0, 0, 0, 0, 0]
         }
 
     def probability(self, leader, follower):
@@ -53,10 +52,10 @@ class Game:
         for i in range(self.attack_count):
             for j in range(self.defence_count):
                 total_payoff += self.leader.get_strategy(i) * self.follower.get_strategy(j) * \
-                    (self.probability(leader=i, follower=j) * \
-                    ((-1) * self.leader_gain(i) - self.leader_cost(i,j))) + \
-                    (1 - self.probability(leader=i, follower=j)) * \
-                    (self.leader_gain(i) - self.leader_cost(i,j))
+                                (self.probability(leader=i, follower=j) * \
+                                 ((-1) * self.leader_gain(i) - self.leader_cost(i, j))) + \
+                                (1 - self.probability(leader=i, follower=j)) * \
+                                (self.leader_gain(i) - self.leader_cost(i, j))
         return total_payoff
 
     def calculate_follower_payoff(self):
@@ -64,10 +63,10 @@ class Game:
         for i in range(self.attack_count):
             for j in range(self.defence_count):
                 total_payoff += self.leader.get_strategy(i) * self.follower.get_strategy(j) * \
-                    (self.probability(leader=i, follower=j) * \
-                    (self.follower_gain(j) - self.follower_cost(i,j))) + \
-                    (1 - self.probability(leader=i, follower=j)) * \
-                    ((-1) * self.follower_cost(i,j))
+                                (self.probability(leader=i, follower=j) * \
+                                 (self.follower_gain(j) - self.follower_cost(i, j))) + \
+                                (1 - self.probability(leader=i, follower=j)) * \
+                                ((-1) * self.follower_cost(i, j))
         return total_payoff
 
     def realise_round(self):
@@ -76,7 +75,7 @@ class Game:
         print('Realising round ' + str(self.round_counter))
 
         self.leader.create_new_strategy()
-        self.follower.create_new_strategy(self.leader.get_whole_strategy()) # TODO: leader strat already known
+        self.follower.create_new_strategy(self.leader.get_whole_strategy())  # TODO: leader strat already known
 
         print('Leader strategy:')
         print(self.leader.get_whole_strategy())
@@ -103,7 +102,6 @@ class Game:
             self.best_follower_round['round'] = self.round_counter
             self.best_follower_round['strategy'] = self.follower.get_whole_strategy()
             self.best_follower_round['opp_strategy'] = self.leader.get_whole_strategy()
-
 
         print('Payoffs:')
         print('Leader_payoff={lp}\tFollower_payoff={fp}'.format(lp=leader_payoff, fp=follower_payoff))
