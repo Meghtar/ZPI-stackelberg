@@ -5,54 +5,9 @@ class Leader(Player):
     def __init__(self,  gain_and_costs, attack_probabilities, initial_strategy):
         super().__init__(gain_and_costs, attack_probabilities, initial_strategy)
 
-    def calc_sum_of_min_max_costs(self):
-        min_cost = 9999
-        max_cost = -9999
-        for i in range(1, 6):
-            cost = 0
-            for j in range(5):
-                cost += self.gain_and_costs[j][i]
-            if cost > max_cost:
-                max_cost = cost
-            if cost < min_cost:
-                min_cost = cost
-        return min_cost + max_cost
-
-    def get_countermeasure_cost(self, ctr):
-        cost = 0
-        for j in range(5):
-            # print(self.gain_and_costs[j][ctr + 1])
-            cost += self.gain_and_costs[j][ctr + 1]
-        return cost
-
-    def get_strategy_countremeasures_cost(self, strategy):
-        cost = 0
-        for j in range(5):
-            # print(self.gain_and_costs[j][ctr + 1])
-            if strategy[j] == 1:
-                cost += self.get_countermeasure_cost(j)
-        return cost
-
-    def generate_all_strats_for_strat3(self):
-        last_candidate = [0,0,0,0,0]
-        possible_strats = []
-        possible_strats.append(last_candidate)
-        round = 1
-
-        while round < 31:
-            candidate = self.inc_arr(last_candidate)
-            if self.get_strategy_countremeasures_cost(candidate) <= self.sum_of_min_max_costs:
-                possible_strats.append(candidate)
-            last_candidate = candidate
-            round += 1
-        return possible_strats[1:]
-
-
     def create_new_strategy(self):
         # programmer shall change strategy here
-        # print(self.get_countermeasure_cost(0))
-        # exit()
-        self.strategy3()
+        self.strategy2()
     
     def strategy1(self):
         ### strategy 1:
@@ -127,3 +82,45 @@ class Leader(Player):
                 best_payoff = round['payoff']
                 best_strat = round['strategy']
         self.strategy = best_strat
+
+    def calc_sum_of_min_max_costs(self):
+        min_cost = 9999
+        max_cost = -9999
+        for i in range(1, 6):
+            cost = 0
+            for j in range(5):
+                cost += self.gain_and_costs[j][i]
+            if cost > max_cost:
+                max_cost = cost
+            if cost < min_cost:
+                min_cost = cost
+        return min_cost + max_cost
+
+    def get_countermeasure_cost(self, ctr):
+        cost = 0
+        for j in range(5):
+            # print(self.gain_and_costs[j][ctr + 1])
+            cost += self.gain_and_costs[j][ctr + 1]
+        return cost
+
+    def get_strategy_countremeasures_cost(self, strategy):
+        cost = 0
+        for j in range(5):
+            # print(self.gain_and_costs[j][ctr + 1])
+            if strategy[j] == 1:
+                cost += self.get_countermeasure_cost(j)
+        return cost
+
+    def generate_all_strats_for_strat3(self):
+        last_candidate = [0,0,0,0,0]
+        possible_strats = []
+        possible_strats.append(last_candidate)
+        round = 1
+
+        while round < 31:
+            candidate = self.inc_arr(last_candidate)
+            if self.get_strategy_countremeasures_cost(candidate) <= self.sum_of_min_max_costs:
+                possible_strats.append(candidate)
+            last_candidate = candidate
+            round += 1
+        return possible_strats[1:]

@@ -72,7 +72,7 @@ class Game:
 
     def realise_round(self):
         self.round_counter += 1
-        print('++++++++++++++++++++')
+        print('====================')
         print('Realising round ' + str(self.round_counter))
 
         self.leader.create_new_strategy()
@@ -149,3 +149,14 @@ class Game:
             self.best_follower_round['opp_payoff']
         ))
         print('==================================')
+        # print(self.leader.previous_rounds)
+        total_leader_payoff = 0
+        total_follower_payoff = 0
+        [total_leader_payoff := total_leader_payoff + round['payoff'] for round in self.leader.previous_rounds]
+        avg_leader_payoff = total_leader_payoff / self.round_counter
+        [total_follower_payoff := total_follower_payoff + round['payoff'] for round in self.follower.previous_rounds]
+        avg_follower_payoff = total_follower_payoff / self.round_counter
+        print('Total leader payoff {}'.format(total_leader_payoff))
+        print('Avg leader payoff {}'.format(avg_leader_payoff))
+        print('Total follower payoff {}'.format(total_follower_payoff))
+        print('Avg follower payoff {}'.format(avg_follower_payoff))
