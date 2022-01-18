@@ -149,10 +149,3 @@ class Game:
             self.best_follower_round['opp_payoff']
         ))
         print('==================================')
-
-    def best_attacker_strategy(self, strategy_array):
-        best_strategy = []
-        for i in range(0, len(strategy_array)):
-            best_strategy = attack_and_remedy_prob[i].index(max(attack_and_remedy_prob[i]))
-        #jeśli oba prawdopodobieństwa najlepszej strategi są takie same to wybierz losowo jedno z nich.
-        return best_strategy[random.randint(0, len(best_strategy)-1)]
