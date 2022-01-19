@@ -34,9 +34,9 @@ class Follower(Player):
         best_strategy_score = -1000
 
         for game in self.all_game_possibilities:
-            for i in range(len(self.strategy)):
-                for j in range(len(self.strategy)):
-                    strategy_score = leader_strategy[i] * self.strategy[j] * \
+            for i in range(len(game)):
+                for j in range(len(game)):
+                    strategy_score = leader_strategy[i] * game[j] * \
                                      (self.get_prob(leader_strategy[i], game[j]) * \
                                       (self.follower_gain(j) - self.follower_cost(i, j))) + \
                                      (1 - self.get_prob(leader_strategy[i], game[j])) * \
